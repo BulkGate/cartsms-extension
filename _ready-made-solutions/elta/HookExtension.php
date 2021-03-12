@@ -14,7 +14,7 @@ class HookExtension extends Extensions\Strict implements Extensions\Hook\IExtens
 {
     public function extend(Extensions\Database\IDatabase $database, Extensions\Hook\Variables $variables)
     {
-        $tracking_number = $database->execute($database->prepare("SELECT `tracking_id` FROM `" . $database->prefix('eltacourier') . "` WHERE `order_id` = %s", [$variables->get('order_id')]))->getRow();
+        $tracking_number = $database->execute($database->prepare("SELECT `tracking_id` FROM `" . $database->table('eltacourier') . "` WHERE `order_id` = %s", [$variables->get('order_id')]))->getRow();
 
         if ($tracking_number)
         {
